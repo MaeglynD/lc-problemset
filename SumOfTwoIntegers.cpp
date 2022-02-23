@@ -3,10 +3,10 @@ using namespace std;
 typedef long long ll;
 
 int getSum(int a, int b) {
-	while (b > 0) {
-		int tmp = (a & b) << 1;
+	while (b != 0) {
+		unsigned tmp = (a & b);
 		a = a ^ b;
-		b = tmp;
+		b = tmp << 1;
 	}
 
 	return a;
@@ -15,7 +15,8 @@ int getSum(int a, int b) {
 int main () {
 	vector<pair<int, int>> testCases = {
 		{1,2},
-		{2,3}
+		{2,3},
+		{-1, 1}
 	};
 
 	for (auto& [a, b] : testCases) {
