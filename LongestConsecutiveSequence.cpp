@@ -4,7 +4,7 @@ typedef long long ll;
 
 int longestConsecutive(vector<int>& nums) {
   int ans = 0;
-  unordered_set<int> s(make_move_iterator(nums.begin()), make_move_iterator(nums.end()));
+  unordered_set<int> s(nums.begin(), nums.end());
 
   for (auto& n : s) {
     if (!s.count(n-1)) {
