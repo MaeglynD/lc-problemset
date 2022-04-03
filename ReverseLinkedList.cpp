@@ -50,5 +50,5 @@ int main () {
     tmp = tmp->next;
   }
 
-	return 0;
+  return 0;
 }
