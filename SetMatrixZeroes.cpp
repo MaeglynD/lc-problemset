@@ -3,21 +3,21 @@ using namespace std;
 typedef long long ll;
 
 void setZeroes(vector<vector<int>>& matrix) {
-	int y = matrix.size(), x = matrix[0].size(), tmp = 1;
+  int y = matrix.size(), x = matrix[0].size(), tmp = 1;
 
-	for (int r = 0; r < y; ++r) {
-		for (int c = 0; c < x; ++c) {
-			if (!matrix[r][c]) {
-				if (c) {
-					matrix[0][c] = 0;
-				} else {
-					tmp = 0;
-				}
+  for (int r = 0; r < y; ++r) {
+    for (int c = 0; c < x; ++c) {
+      if (!matrix[r][c]) {
+        if (c) {
+          matrix[0][c] = 0;
+        } else {
+          tmp = 0;
+        }
 
-				matrix[r][0] = 0;
-			}
-		}
-	}
+        matrix[r][0] = 0;
+      }
+    }
+  }
 
   for (int i = 1; i < y; ++i) {
     for (int j = 1; j < x; ++j) {

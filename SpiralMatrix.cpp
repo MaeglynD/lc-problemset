@@ -3,26 +3,26 @@ using namespace std;
 typedef long long ll;
 
 vector<int> spiralMatrix(vector<vector<int>>& matrix) {
-	int m = matrix.size(), n = matrix[0].size(), mn = m*n;
-	int pos = 0, r = 0, c = 0;
+  int m = matrix.size(), n = matrix[0].size(), mn = m*n;
+  int pos = 0, r = 0, c = 0;
 
-	vector<int> ans(mn);
-	vector<pair<int, int>> positions = {{0,1}, {1,0}, {0,-1}, {-1,0}};
+  vector<int> ans(mn);
+  vector<pair<int, int>> positions = {{0,1}, {1,0}, {0,-1}, {-1,0}};
 
-	for (int i = 0; i < mn; ++i) {
-		if (matrix[r][c] != INT_MAX) {
-			auto& [y, x] = positions[pos];
+  for (int i = 0; i < mn; ++i) {
+    if (matrix[r][c] != INT_MAX) {
+      auto& [y, x] = positions[pos];
 
-			ans[i] = matrix[r][c];
-			matrix[r][c] = INT_MAX;
+      ans[i] = matrix[r][c];
+      matrix[r][c] = INT_MAX;
 
       r+=y;
       c+=x;
 
       if (
-          r < 0 || r >= m || 
-          c < 0 || c >= n || 
-          matrix[r][c] == INT_MAX
+        r < 0 || r >= m || 
+        c < 0 || c >= n || 
+        matrix[r][c] == INT_MAX
       ) {
         r-=y;
         c-=x;
@@ -33,9 +33,9 @@ vector<int> spiralMatrix(vector<vector<int>>& matrix) {
         c+= positions[pos].second;
       }
     }
-	}
+  }
 
-	return ans;
+  return ans;
 }
 
 int main () {

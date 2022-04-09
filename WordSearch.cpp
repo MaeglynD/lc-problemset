@@ -3,9 +3,9 @@ using namespace std;
 typedef long long ll;
 
 bool dfs(vector<vector<char>>& board, string& word, int depth, int y, int x) {
-	if (depth == word.size()) {
-		return true;
-	}
+  if (depth == word.size()) {
+    return true;
+  }
 
   if (
     y < 0 || y >= board.size() || 
@@ -16,30 +16,29 @@ bool dfs(vector<vector<char>>& board, string& word, int depth, int y, int x) {
     return false;
   }
 
-	board[y][x] = '*';
+  board[y][x] = '*';
 
   bool ans = dfs(board, word, depth+1, y+1, x) ||
     dfs(board, word, depth+1, y-1, x) ||
     dfs(board, word, depth+1, y, x-1) ||
     dfs(board, word, depth+1, y, x+1);
 
-	board[y][x] = word[depth];
+  board[y][x] = word[depth];
 
-	return ans; 
+  return ans; 
 }
 
 bool exist(vector<vector<char>>& board, string word) {
-	for (int i = 0; i < board.size(); ++i) {
-		for (int j = 0; j < board[0].size(); ++j) {
-			if (dfs(board, word, 0, i, j)) {
-				return true;
-			}
-		}
-	}
+  for (int i = 0; i < board.size(); ++i) {
+    for (int j = 0; j < board[0].size(); ++j) {
+      if (dfs(board, word, 0, i, j)) {
+        return true;
+      }
+    }
+  }
 
-	return false;
+  return false;
 }
-
 
 int main () {
   vector<vector<char>> matrix = {
