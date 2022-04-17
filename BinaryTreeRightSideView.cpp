@@ -3,58 +3,46 @@
 using namespace std;
 typedef long long ll;
 
-vector<vector<int>> levelOrder(TreeNode* root) {
+vector<int> rightSideView(TreeNode* root) {
   if (!root) return {};
 
-  vector<vector<int>> order;
+  vector<int> ans;
   queue<TreeNode*> q;
 
   q.push(root);
 
-  while (!q.empty()) {
+  while(!q.empty()) {
     int qs = q.size();
-    vector<int> children(qs);
 
     for (int i = 0; i < qs; ++i) {
       root = q.front();
-      children[i] = root->val;
 
+      if (i == qs-1) ans.push_back(root->val);
       if (root->left) q.push(root->left);
       if (root->right) q.push(root->right);
 
       q.pop();
     }
-
-    order.push_back(children); 
   }
 
-  return order;
+  return ans;
 }
 
 int main() {
   vector<vector<int>> testCases = {
-    {3,9,20,-1,-1,15,7},
-    {1},
-    {1,2,3,4,-1,-1,5}
+    {1,2,3,-1,5,-1,4},
+    {1,-1,3},
   };
-
+  
   for (auto& test : testCases) {
-    auto res = levelOrder(constructTree(test));
-
-    cout << "[";
+    auto res = rightSideView(constructTree(test));
 
     for (auto& x : res) {
-      cout << "[";
-
-      for (auto& y : x) {
-        cout << y << ", ";
-      }
-
-      cout << "], ";
+      cout << x << ", ";
     }
 
-    cout << "]" << endl;
+    cout << endl;
   }
-
+  
   return 0;
 }
