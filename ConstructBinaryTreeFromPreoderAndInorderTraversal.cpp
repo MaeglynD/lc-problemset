@@ -3,8 +3,36 @@
 using namespace std;
 typedef long long ll;
 
-// blind initial solution, 12ms / 25mb
+// 2nd solution, 35ms, 26.4mb 
+TreeNode* dfs(vector<int>& preorder, vector<int>& inorder, unordered_map<int, int>& hm, int pi, int l, int r) {
+  TreeNode* node = new TreeNode(preorder[pi]);
+  int ii = hm[preorder[pi]];
+
+  if (l < ii) {
+    node->left = dfs(preorder, inorder, hm, pi+1, l, ii-1);
+
+    if (r > ii) {
+      node->right = dfs(preorder, inorder, hm, pi+(ii-l)+1, ii+1, r);
+    }
+  } else if (r > ii) {
+    node->right = dfs(preorder, inorder, hm, pi+1, ii+1, r);
+  }
+
+  return node;
+}
+
 TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+  unordered_map<int, int> hm;
+
+  for (int i = 0; i < inorder.size(); ++i) {
+    hm[inorder[i]] = i;
+  }
+
+  return dfs(preorder, inorder, hm, 0, 0, inorder.size()-1);
+}
+
+// blind initial solution, 12ms / 25mb
+TreeNode* buildTree2(vector<int>& preorder, vector<int>& inorder) {
   vector<TreeNode*> nodes(preorder.size());
   vector<bool> visited(inorder.size(), false);
   unordered_map<int, int> hm; 

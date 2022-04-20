@@ -53,8 +53,8 @@ void logTree(TreeNode* root) {
     TreeNode* tmp = q.front();
     
     if (tmp) {
-      cout << (tmp->left ? tmp->left->val : -1) << ", ";
-      cout << (tmp->right ? tmp->right->val : -1) << ", ";
+      cout << (tmp->left ? tmp->left->val : -404) << ", ";
+      cout << (tmp->right ? tmp->right->val : -404) << ", ";
 
       q.push(tmp->left);
       q.push(tmp->right);
