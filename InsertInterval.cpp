@@ -2,33 +2,22 @@
 using namespace std;
 typedef long long ll;
 
-bool overlaps(vector<int>& a, vector<int>& b) {
-  return (a[0] >= b[0] && a[0] <= b[1]) || (a[1] >= b[0] && a[1] <= b[1]);
-}
-
 vector<vector<int>> insert(vector<vector<int>>& vals, vector<int>& v) {
   vector<vector<int>> ans;
   int i = 0;
 
-  while (i < vals.size() && vals[i][0] < v[0] && vals[i][1] < v[0]) {
+  while (i < vals.size() && vals[i][1] < v[0]) {
     ans.push_back(vals[i]);
     i++;
   }
 
-  ans.push_back(v);
-
-  while (i < vals.size()) {
-    vector<int>& prev = ans.back();
-    vector<int>& curr = vals[i];
-
-    if (!overlaps(prev, curr) && !overlaps(curr, prev))
-      break;
-
-    prev[0] = min(prev[0], curr[0]);
-    prev[1] = max(prev[1], curr[1]);
-
+  while (i < vals.size() && vals[i][0] <= v[1]) {
+    v[0] = min(v[0], vals[i][0]);
+    v[1] = max(v[1], vals[i][1]);
     i++;
   }
+
+  ans.push_back(v);
 
   while (i < vals.size()) {
     ans.push_back(vals[i]);
