@@ -4,27 +4,14 @@ typedef long long ll;
 
 class Interval {
   public:
-      int start, end;
-      Interval(int start, int end) {
-          this->start = start;
-          this->end = end;
-      }
+    int start, end;
+    Interval(int start, int end) {
+      this->start = start;
+      this->end = end;
+    }
 };
 
 bool canAttendMeetings(vector<Interval>& vals) {
-  // for (int i = 0; i < vals.size(); ++i) {
-  //   for (int j = i+1; j < vals.size(); ++j) {
-  //     if (
-  //       (vals[i].start >= vals[j].start && vals[i].start < vals[j].end) ||
-  //       (vals[j].start >= vals[i].start && vals[j].start < vals[i].end)
-  //     ) {
-  //       return false;
-  //     }
-  //   }
-  // }
-
-  // return true;
-
   sort(vals.begin(), vals.end(), [](Interval& a, Interval& b){ 
     return a.start < b.start; 
   });
