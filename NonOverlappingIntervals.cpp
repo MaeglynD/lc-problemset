@@ -35,16 +35,3 @@ int main () {
 
   return 0;
 }
-
-
-
-
-  // for (auto& [x, y] : overlaps) {
-  //   cout << "{ " << x << ": ";
-
-  //   for (auto& a : y) {
-  //     cout << a << ", ";
-  //   }
-
-  //   cout << " }" << endl;
-  // }
