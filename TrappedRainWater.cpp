@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int trap(vector<int>& nums){
+int trapAlt(vector<int>& nums){
   int l = 0, r = nums.size()-1;
   int ans = 0, ml = 0, mr = 0;
 
@@ -15,6 +15,25 @@ int trap(vector<int>& nums){
       r--;
       ans += max(0, mr-nums[r]);
     }
+  }
+  
+  return ans;
+}
+
+int trap(vector<int>& nums){
+  int l = 0, r = nums.size()-1;
+  int ans = 0, curr = 0;
+
+  while (l < r){
+    if (nums[l] < nums[r]){
+      curr = max(curr, nums[l]);
+      l++;
+    } else {
+      curr = max(curr, nums[r]);
+      r--;
+    }
+
+    ans += max(0, curr-min(nums[l], nums[r]));
   }
   
   return ans;
